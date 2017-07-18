@@ -45,6 +45,21 @@
         <scope>runtime</scope>
     </dependency>
     <dependency>
+    <groupId>com.sun.jna</groupId>
+    <artifactId>jna</artifactId>
+    <version>3.0.9</version>
+	</dependency>
+	<dependency>
+    <groupId>com.hynnet</groupId>
+    <artifactId>DJNativeSwing-SWT</artifactId>
+    <version>1.0.0</version>
+</dependency>
+    <dependency>
+    <groupId>javax.media</groupId>
+    <artifactId>jmf</artifactId>
+    <version>2.1.1e</version>
+	</dependency>
+    <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>1.2.14</version>
@@ -55,4 +70,5 @@
     <version>1.1.1</version>
 </dependency>
   </dependencies>
+  
 </project>

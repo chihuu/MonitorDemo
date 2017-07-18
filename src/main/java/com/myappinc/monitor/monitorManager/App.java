@@ -1,5 +1,6 @@
 package com.myappinc.monitor.monitorManager;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.spikeify.ffmpeg.FFmpeg;
@@ -8,7 +9,12 @@ import com.spikeify.ffmpeg.FFprobe;
 import com.spikeify.ffmpeg.builder.FFmpegBuilder;
 import com.spikeify.ffmpeg.probe.FFmpegFormat;
 import com.spikeify.ffmpeg.probe.FFmpegProbeResult;
+
 import com.spikeify.ffmpeg.probe.FFmpegStream;
+
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
+
+import javax.media.bean.playerbean.MediaPlayer;
 
 
 
@@ -19,6 +25,8 @@ import com.spikeify.ffmpeg.probe.FFmpegStream;
 public class App 
 {   
 	String b;
+	MediaPlayer player;
+	
 	public void getb(String s){
 		this.b =s;
 	}
@@ -52,5 +60,6 @@ public class App
 //        );
       
     }
+   
    
 }
