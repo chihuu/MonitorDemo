@@ -1,6 +1,13 @@
 package com.myappinc.monitor.monitorManager;
 
 import java.io.FileWriter;
+import java.awt.Robot;
+import java.awt.AWTException;
+import java.awt.Graphics2D;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Rectangle;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,7 +16,13 @@ import org.json.simple.parser.ParseException;
 import com.google.common.util.concurrent.Monitor;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -277,5 +290,37 @@ public class MonitorJSONWriteFile {
 		}
 		return jsonObject;
 	}
+	public void createScreenCapture() throws HeadlessException, AWTException, IOException {
+		String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
 
+        BufferedImage screencapture = new Robot().createScreenCapture(
+            new Rectangle(Toolkit.getDefaultToolkit().getScreenSize())
+        );
+
+        // Save as JPEG
+        File fil = new File("screen");
+        if(!fil.exists()) {
+        	 fil.mkdirs();
+        }
+        File file = new File("screen/capture" + timeStamp + ".jpg");
+        ImageIO.write(screencapture, "jpg", file);
+
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	public void createcapture() throws AWTException, IOException {
+		Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+		BufferedImage screenCapture = new Robot().createScreenCapture(screen);
+
+		Image cursor = ImageIO.read(new File("cursor.png"));
+		int x = MouseInfo.getPointerInfo().getLocation().x;
+		int y = MouseInfo.getPointerInfo().getLocation().y;
+
+		Graphics2D graphics2D = screenCapture.createGraphics();
+		graphics2D.drawImage(cursor, x, y, 16, 16, null); // cursor.gif is 16x16 size.
+		ImageIO.write(screenCapture, "GIF", new File("capture.gif"));
+	}
 }
